@@ -2,7 +2,7 @@ http://api.libtomsoftware.com {
 
     @health path /health
     handle @health {
-        reverse_proxy lbt-authentication-service:3000
+        reverse_proxy lbt-healthcheck:3000
     }
 
     handle_path /authentication-service/* {

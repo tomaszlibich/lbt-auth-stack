@@ -1,12 +1,18 @@
 {
-  "name": "lbt-authentication-service",
+  "name": "lbt-auth-stack",
   "version": "1.0.0",
-  "type": "module",
-  "main": "dist/index.js",
+  "private": true,
+  "workspaces": [
+    "lbt-authentication-service",
+    "lbt-authorization-service",
+    "lbt-healthcheck"
+  ],
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "build": "npm run build -w lbt-authentication-service && npm run build -w lbt-authorization-service",
+    "build:auth": "npm run build -w lbt-authentication-service",
+    "build:authz": "npm run build -w lbt-authorization-service",
+    "dev:auth": "npm run dev -w lbt-authentication-service",
+    "dev:authz": "npm run dev -w lbt-authorization-service"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.614.0",

@@ -1,8 +1,3 @@
-declare type RegisterBody = {
-  username: string;
-  password: string;
-};
-
 declare type User = {
   id: string;
   username: string;
