@@ -1,28 +1,31 @@
-# ---------- Build stage ----------
 FROM node:20.18.0-alpine AS build
 
-WORKDIR /app
+# 1. Work in the service directory
+WORKDIR /app/authorization-service
 
-COPY package*.json ./
-COPY tsconfig.json ./
+# 2. Copy root + service configs / manifests
+COPY tsconfig.base.json /app/tsconfig.base.json
+COPY authorization-service/package*.json ./
+COPY authorization-service/tsconfig.json ./
 
 RUN npm install
 
-COPY src ./src
+# 3. Copy service source
+COPY authorization-service/src ./src
 
 RUN npm run build
 
 # ---------- Runtime stage ----------
 FROM node:20.18.0-alpine AS runtime
 
-WORKDIR /app
-
+WORKDIR /app/authorization-service
 ENV NODE_ENV=production
 
-COPY package*.json ./
+COPY authorization-service/package*.json ./
+
 RUN npm install --omit=dev
 
-COPY --from=build /app/dist ./dist
+COPY --from=build /app/authorization-service/dist ./dist
 
 EXPOSE 3000
 
