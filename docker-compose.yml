@@ -10,6 +10,7 @@ services:
       - caddy_data:/data
       - caddy_config:/config
     depends_on:
+      - lbt-healthcheck
       - lbt-authentication-service
       - lbt-authorization-service
     networks:
