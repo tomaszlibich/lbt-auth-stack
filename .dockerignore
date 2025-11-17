@@ -1,39 +1,9 @@
-# Git
-.git
-.gitignore
-
-# Node modules (root + all services)
 node_modules
 **/node_modules
-
-# TS build output
 dist
 **/dist
-
-# Local env files except the one used in production
-.env
-**/.env
-
-# Docker
+.git
+.dockerignore
 Dockerfile
 docker-compose.yml
 Caddyfile
-caddy_data
-caddy_config
-
-# Logs
-*.log
-logs
-**/logs
-
-# OS / editor files
-.DS_Store
-.vscode
-.idea
-*.swp
-
-# Temporary files
-tmp
-temp
-**/tmp
-**/temp
