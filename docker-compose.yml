@@ -17,7 +17,9 @@ services:
       - app-net
 
   lbt-healthcheck:
-    build: ./healthcheck
+    build:
+      context: .
+      dockerfile: ./healthcheck/Dockerfile
     container_name: lbt-healthcheck
     restart: unless-stopped
     env_file:
@@ -27,7 +29,9 @@ services:
     networks:
       - app-net
   lbt-authentication-service:
-    build: ./authentication-service
+    build:
+      context: .
+      dockerfile: ./authentication-service/Dockerfile
     container_name: lbt-authentication-service
     restart: unless-stopped
     env_file:
@@ -37,7 +41,9 @@ services:
     networks:
       - app-net
   lbt-authorization-service:
-    build: ./authorization-service
+    build:
+      context: .
+      dockerfile: ./authorization-service/Dockerfile
     container_name: lbt-authorization-service
     restart: unless-stopped
     env_file:
