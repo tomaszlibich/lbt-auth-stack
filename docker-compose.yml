@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - lbt-authentication-service
+      - lbt-authorization-service
+    networks:
+      - app-net
+  lbt-authentication-service:
+    build: ./authentication-service
+    container_name: lbt-authentication-service
+    restart: unless-stopped
+    env_file:
+      - ./authentication-service/.env
+    expose:
+      - "3000"
+    networks:
+      - app-net
+  lbt-authorization-service:
+    build: ./authorization-service
+    container_name: lbt-authorization-service
+    restart: unless-stopped
+    env_file:
+      - ./authorization-service/.env
+    expose:
+      - "3000"
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:
