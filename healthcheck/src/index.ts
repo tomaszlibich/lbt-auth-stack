@@ -2,7 +2,7 @@ import "dotenv/config";
 import type { Request, Response } from "express";
 import express from "express";
 
-import { CONFIG } from "./config.ts";
+import { CONFIG } from "./config";
 
 const app = express();
 

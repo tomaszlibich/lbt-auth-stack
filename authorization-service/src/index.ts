@@ -1,9 +1,9 @@
 import "dotenv/config";
 import express from "express";
 
-import { CONFIG } from "./config.ts";
+import { CONFIG } from "./config";
 
-import { healthcheck } from "./endpoints/healthcheck/index.ts";
+import { healthcheck } from "./endpoints/healthcheck";
 
 const app = express();
 

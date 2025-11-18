@@ -1,8 +1,9 @@
 import type { Request, Response } from "express";
 import { PutCommand } from "@aws-sdk/lib-dynamodb";
+import { v4 as uuidv4 } from "uuid";
 
-import { DB_CONFIG } from "../../config.ts";
-import { encrypt } from "../../utils/encrypt.ts";
+import { DB_CONFIG } from "../../config";
+import { encrypt } from "../../utils/encrypt";
 
 const { DB_DOC_CLIENT } = DB_CONFIG;
 
@@ -30,7 +31,7 @@ export const register = async (
     const userAgent = request.headers["user-agent"] ?? "unknown";
 
     const user: User = {
-      id: "some-unique-id",
+      id: uuidv4(),
       username,
       password_hash: hash,
       password_salt: salt,
