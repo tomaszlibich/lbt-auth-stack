@@ -1,0 +1,24 @@
+name: Deploy to LBT-Lightsail
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy over SSH to Lightsail
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.LIGHTSAIL_HOST }}
+          username: ${{ secrets.LIGHTSAIL_USER }}
+          key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+          script: |
+            cd /home/ubuntu/apps/lbt-auth-stack
+            git pull origin master
+            docker compose down
+            docker compose up -d --build
