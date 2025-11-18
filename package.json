@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "lbt-authentication-service",
-    "lbt-authorization-service",
-    "lbt-healthcheck"
+    "authentication-service",
+    "authorization-service",
+    "healthcheck"
   ],
   "scripts": {
-    "build": "npm run build -w lbt-authentication-service && npm run build -w lbt-authorization-service",
-    "build:auth": "npm run build -w lbt-authentication-service",
-    "build:authz": "npm run build -w lbt-authorization-service",
-    "dev:auth": "npm run dev -w lbt-authentication-service",
-    "dev:authz": "npm run dev -w lbt-authorization-service"
+    "build": "npm run build -w authentication-service && npm run build -w authorization-service",
+    "build:auth": "npm run build -w authentication-service",
+    "build:authz": "npm run build -w authorization-service",
+    "dev:auth": "npm run dev -w authentication-service",
+    "dev:authz": "npm run dev -w authorization-service"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.614.0",
