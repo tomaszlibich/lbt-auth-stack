@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { DB_CONFIG } from "../../config";
 import { encrypt } from "../../utils/encrypt";
 
-import type { RegisterBody } from "../../types";
+import type { RegisterBody, User } from "../../types";
 
 const { DB_DOC_CLIENT } = DB_CONFIG;
 
