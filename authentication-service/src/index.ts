@@ -1,9 +1,9 @@
 import "dotenv/config";
 import express from "express";
 
-import { CONFIG } from "./config.ts";
+import { CONFIG } from "./config";
 
-import { register } from "./endpoints/register/index.ts";
+import { register } from "./endpoints/register";
 
 const app = express();
 

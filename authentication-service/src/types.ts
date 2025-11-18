@@ -1,9 +1,9 @@
-declare type RegisterBody = {
+export type RegisterBody = {
   username: string;
   password: string;
 };
 
-declare type User = {
+export type User = {
   id: string;
   username: string;
   password_hash: string;
